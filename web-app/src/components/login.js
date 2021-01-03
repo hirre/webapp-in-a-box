@@ -1,5 +1,6 @@
 import { Button, TextField, Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import '../App.css'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -48,7 +49,8 @@ function Login()
                         <br/>
                         <div dir="rtl">
                             <Button variant="contained" color="primary">Login</Button>
-                        </div>                    
+                        </div>
+                        <div>Sign up</div>                    
                     </form>
                 </Grid>   
 
