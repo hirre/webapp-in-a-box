@@ -15,7 +15,9 @@ function Login()
             <Typography variant="h4" component="h2" direction="center">
             Login
             </Typography>
+
             <br/>
+
             <TextField                    
             id="username"
             label="Username"
@@ -25,7 +27,9 @@ function Login()
               style: { marginBottom: 10 }
               }}
             />
-            <br/>        
+
+            <br/>
+
             <TextField
                 id="password"
                 label="Password"
@@ -36,7 +40,9 @@ function Login()
                   style: { marginBottom: 10 }
                   }}
             />
+            
             <br/>
+            
             <div dir="rtl">
                 <Button variant="contained" color="primary">Login</Button>
             </div>
