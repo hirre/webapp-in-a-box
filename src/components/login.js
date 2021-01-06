@@ -1,9 +1,27 @@
 import { Button, TextField, Typography, Box } from '@material-ui/core';
 
-
 function Login() 
 {
-    return (
+  async function handleLogin(e) 
+  {
+    e.preventDefault();
+    const requestOptions = 
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: 'test', password: 'haha' })
+    };
+
+    const response = await fetch("https://localhost/api/Auth/User", requestOptions);
+    
+    if (response.ok)
+    {
+      const data = await response.json();
+      console.log(data);
+    }
+  }
+
+  return (
         
       <Box
         display="flex"
@@ -44,7 +62,7 @@ function Login()
             <br/>
             
             <div dir="rtl">
-                <Button variant="contained" color="primary">Login</Button>
+                <Button variant="contained" color="primary" onClick={handleLogin}>Login</Button>
             </div>
             <div>Sign up</div>                    
         </form>
