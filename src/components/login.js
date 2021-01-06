@@ -1,12 +1,17 @@
+import React, { useRef } from "react";
 import { Button, TextField, Typography, Box } from '@material-ui/core';
 import Api from './api/Api'
 
 function Login() 
 {
+  const unameTextfieldRef = useRef();
+  const pwdTextfieldRef = useRef();
+
   async function handleLogin(e) 
   {
     e.preventDefault();
-    await Api.loginCall();
+    var token = await Api.loginCall(unameTextfieldRef.current.value, pwdTextfieldRef.current.value);
+    console.log(token);
   }
 
   return (
@@ -29,6 +34,7 @@ function Login()
           label="Username"
           defaultValue=""
           variant="outlined"
+          inputRef={unameTextfieldRef}
           InputProps={{
             style: { marginBottom: 10 }
           }}
@@ -42,6 +48,7 @@ function Login()
           type="password"
           autoComplete="current-password"
           variant="outlined"
+          inputRef={pwdTextfieldRef}
           InputProps={{
             style: { marginBottom: 10 }
           }}
