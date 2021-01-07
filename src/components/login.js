@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { Button, TextField, Typography, Box } from '@material-ui/core';
+import { Button, TextField, Typography, Box, SnackbarContent } from '@material-ui/core';
 import Api from './api/Api'
 
 function Login() 
@@ -11,58 +11,91 @@ function Login()
   {
     e.preventDefault();
     var token = await Api.loginCall(unameTextfieldRef.current.value, pwdTextfieldRef.current.value);
-    console.log(token);
+    
+    if (token === "")
+    {
+      // Error
+    }
+    else
+    {
+      // Route to main view  
+    }
   }
 
   return (
+    
+    <div>
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        minHeight="100vh"
+      >
+        
+        <form noValidate autoComplete="on">
 
-    <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      minHeight="100vh"
-    >
-      <form noValidate autoComplete="on">
-        <Typography variant="h4" component="h2" direction="center">
-          Login
-            </Typography>
+        <SnackbarContent message="Access denied" hidden={true} />
+        <br/>
 
-        <br />
+          <Typography variant="h4" component="h2" direction="center">
+            Login
+              </Typography>
 
-        <TextField
-          id="username"
-          label="Username"
-          defaultValue=""
-          variant="outlined"
-          inputRef={unameTextfieldRef}
-          InputProps={{
-            style: { marginBottom: 10 }
-          }}
-        />
+          <br />
 
-        <br />
+          <TextField
+            id="username"
+            label="Username"
+            defaultValue=""
+            variant="outlined"
+            inputRef={unameTextfieldRef}
+            InputProps={{
+              style: { marginBottom: 10 }
+            }}
+          />
 
-        <TextField
-          id="password"
-          label="Password"
-          type="password"
-          autoComplete="current-password"
-          variant="outlined"
-          inputRef={pwdTextfieldRef}
-          InputProps={{
-            style: { marginBottom: 10 }
-          }}
-        />
+          <br />
 
-        <br />
+          <TextField
+            id="password"
+            label="Password"
+            type="password"
+            autoComplete="current-password"
+            variant="outlined"
+            inputRef={pwdTextfieldRef}
+            InputProps={{
+              style: { marginBottom: 10 }
+            }}
+          />
 
-        <div dir="rtl">
-          <Button variant="contained" color="primary" onClick={handleLogin}>Login</Button>
-        </div>
-        <div>Sign up</div>
-      </form>
-    </Box>
+          <br />
+
+          <div dir="rtl">
+            <Button variant="contained" color="primary" onClick={handleLogin}>Login</Button>
+          </div>
+          <div>Sign up</div>
+
+        </form>
+
+      </Box>
+
+
+    </div>
+
   );
+
+  function handleOpen()
+  {
+    return true;
+    
+  } 
+
+  function handleClose()
+  {
+    return false;
+
+  } 
+
 }
 
 export default Login;
