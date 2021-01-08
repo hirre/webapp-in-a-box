@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { Button, TextField, Typography, Box, Snackbar, IconButton } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import Api from './api/Api'
@@ -7,6 +8,7 @@ function Login()
 {
   const unameTextfieldRef = useRef();
   const pwdTextfieldRef = useRef();
+  const history = useHistory();
   const [snackOpen, setOpen] = useState(false);
 
   async function handleLogin(e) 
@@ -22,13 +24,15 @@ function Login()
     else
     {
       setOpen(false);
+      
       // Route to main view  
+      history.push("/main");
     }
   }
 
   return (
     
-    <div>
+    <React.Fragment>
       <Box
         display="flex"
         justifyContent="center"
@@ -100,7 +104,7 @@ function Login()
 
       </Box>
 
-    </div>
+    </React.Fragment>
 
   );
 
