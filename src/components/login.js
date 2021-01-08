@@ -24,7 +24,7 @@ function Login()
     else
     {
       setOpen(false);
-      
+
       // Route to main view  
       history.push("/main");
     }
@@ -40,7 +40,7 @@ function Login()
         minHeight="100vh"
       >
         
-        <form noValidate autoComplete="on">
+        <form noValidate autoComplete="on" onSubmit={handleLogin}>
 
           <Snackbar
             anchorOrigin={{
@@ -95,7 +95,7 @@ function Login()
           <br />
 
           <div dir="rtl">
-            <Button variant="contained" color="primary" onClick={handleLogin}>Login</Button>
+            <Button type="submit" variant="contained" color="primary">Login</Button>
           </div>
 
           <div>Sign up</div>
