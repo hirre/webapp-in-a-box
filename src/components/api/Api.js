@@ -24,7 +24,7 @@ async function loginCall(uName, pwd)
     {
         token = await response.text();
     })
-    .catch(error => console.log(error) );
+    .catch(error => token = "" );
 
     return token;
 }

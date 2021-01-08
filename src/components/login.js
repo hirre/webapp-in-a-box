@@ -1,11 +1,13 @@
-import React, { useRef } from "react";
-import { Button, TextField, Typography, Box, SnackbarContent } from '@material-ui/core';
+import React, { useRef, useState } from "react";
+import { Button, TextField, Typography, Box, Snackbar, IconButton } from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
 import Api from './api/Api'
 
 function Login() 
 {
   const unameTextfieldRef = useRef();
   const pwdTextfieldRef = useRef();
+  const [snackOpen, setOpen] = useState(false);
 
   async function handleLogin(e) 
   {
@@ -15,9 +17,11 @@ function Login()
     if (token === "")
     {
       // Error
+      setOpen(true);
     }
     else
     {
+      setOpen(false);
       // Route to main view  
     }
   }
@@ -34,8 +38,24 @@ function Login()
         
         <form noValidate autoComplete="on">
 
-        <SnackbarContent message="Access denied" hidden={true} />
-        <br/>
+          <Snackbar
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'center',
+            }}
+            open={snackOpen}
+            autoHideDuration={6000}
+            onClose={() => setOpen(false)}
+            message="Access denied"
+            action={
+              <React.Fragment>
+                
+                <IconButton size="small" aria-label="close" color="inherit" onClick={() => setOpen(false)}>
+                  <CloseIcon fontSize="small" />
+                </IconButton>
+              </React.Fragment>
+            }
+          />
 
           <Typography variant="h4" component="h2" direction="center">
             Login
@@ -73,28 +93,16 @@ function Login()
           <div dir="rtl">
             <Button variant="contained" color="primary" onClick={handleLogin}>Login</Button>
           </div>
+
           <div>Sign up</div>
 
         </form>
 
       </Box>
 
-
     </div>
 
   );
-
-  function handleOpen()
-  {
-    return true;
-    
-  } 
-
-  function handleClose()
-  {
-    return false;
-
-  } 
 
 }
 
