@@ -10,9 +10,11 @@ function handleErrors(response)
 
 async function loginCall(uName, pwd)
 {
-    let token = "";
+    let loggedIn = false;
+
     const requestOptions =
     {
+        credentials: 'same-origin',
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username: uName, password: pwd })
@@ -22,11 +24,11 @@ async function loginCall(uName, pwd)
     .then(handleErrors)
     .then(async response => 
     {
-        token = await response.text();
+        loggedIn = true;
     })
-    .catch(error => token = "" );
+    .catch(error => loggedIn = false );
 
-    return token;
+    return loggedIn;
 }
 
 const Api = 

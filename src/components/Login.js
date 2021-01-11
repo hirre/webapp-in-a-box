@@ -9,21 +9,21 @@ function Login()
   const unameTextfieldRef = useRef();
   const pwdTextfieldRef = useRef();
   const history = useHistory();
-  const [snackOpen, setOpen] = useState(false);
+  const [snackOpen, setErrorSnackOpen] = useState(false);
 
   async function handleLogin(e) 
   {
     e.preventDefault();
-    var token = await Api.loginCall(unameTextfieldRef.current.value, pwdTextfieldRef.current.value);
+    var loggedIn = await Api.loginCall(unameTextfieldRef.current.value, pwdTextfieldRef.current.value);
     
-    if (token === "")
+    if (loggedIn === false)
     {
       // Error
-      setOpen(true);
+      setErrorSnackOpen(true);
     }
     else
     {
-      setOpen(false);
+      setErrorSnackOpen(false);
 
       // Route to main view  
       history.push("/main");
@@ -49,12 +49,12 @@ function Login()
             }}
             open={snackOpen}
             autoHideDuration={6000}
-            onClose={() => setOpen(false)}
+            onClose={() => setErrorSnackOpen(false)}
             message="Access denied"
             action={
               <React.Fragment>
                 
-                <IconButton size="small" aria-label="close" color="inherit" onClick={() => setOpen(false)}>
+                <IconButton size="small" aria-label="close" color="inherit" onClick={() => setErrorSnackOpen(false)}>
                   <CloseIcon fontSize="small" />
                 </IconButton>
               </React.Fragment>
