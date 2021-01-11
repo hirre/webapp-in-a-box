@@ -1,3 +1,5 @@
+const ApiEndPoint = "https://localhost";
+
 function handleErrors(response) 
 {
     if (!response.ok) 
@@ -20,7 +22,7 @@ async function loginCall(uName, pwd)
         body: JSON.stringify({ username: uName, password: pwd })
     };
 
-    await fetch("https://localhost/api/Auth/User", requestOptions)
+    await fetch(ApiEndPoint + "/api/Auth/User", requestOptions)
     .then(handleErrors)
     .then(async response => 
     {
