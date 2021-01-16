@@ -1,6 +1,8 @@
+import { AppProvider } from "../../App"
+
 const ApiEndPoint = "https://localhost";
 
-function handleErrors(response) 
+const handleErrors = (response) =>
 {
     if (!response.ok) 
     {
@@ -10,7 +12,7 @@ function handleErrors(response)
     return response;
 }
 
-async function loginCall(uName, pwd)
+const loginCall = async (uName, pwd) =>
 {
     let loggedIn = false;
 
@@ -27,8 +29,13 @@ async function loginCall(uName, pwd)
     .then(async response => 
     {
         loggedIn = true;
+        AppProvider.loggedIn = true;
     })
-    .catch(error => loggedIn = false );
+    .catch(error => 
+    {
+        loggedIn = false;
+        AppProvider.loggedIn = false;
+    });
 
     return loggedIn;
 }
@@ -37,5 +44,6 @@ const Api =
 {
     loginCall
 }
+
 
 export default Api;

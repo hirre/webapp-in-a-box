@@ -4,7 +4,7 @@ import { Button, TextField, Typography, Box, Snackbar, IconButton } from '@mater
 import CloseIcon from '@material-ui/icons/Close';
 import Api from './api/Api'
 
-function Login() 
+const Login = () => 
 {
   const unameTextfieldRef = useRef();
   const pwdTextfieldRef = useRef();

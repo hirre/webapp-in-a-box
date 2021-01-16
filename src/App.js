@@ -1,16 +1,20 @@
 import { Switch, BrowserRouter, Route } from 'react-router-dom';
-import { React } from 'react'
+import { React, createContext } from 'react'
 import Login from './components/Login';
-import Menu from './components/navigation/Menu'
+import MainPage from './components/navigation/MainPage'
 import './App.css'
 
-function App() 
+const AppContext = createContext({ IsLoggedIn: false});
+
+export const AppProvider = AppContext.Provider
+
+const App = () => 
 {
   return (
       <BrowserRouter>
         <Switch>
           <Route exact path='/' component={Login}/>
-          <Route exact path='/main' component={Menu}/>
+          <Route exact path='/main' component={MainPage}/>
         </Switch>
       </BrowserRouter>
   );
