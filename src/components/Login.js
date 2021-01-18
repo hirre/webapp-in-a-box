@@ -2,7 +2,8 @@ import React, { useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Button, TextField, Typography, Box, Snackbar, IconButton } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
-import Api from './api/Api'
+import Api from './api/Api';
+import { useAppContext } from "../App";
 
 const Login = () => 
 {
@@ -10,8 +11,9 @@ const Login = () =>
   const pwdTextfieldRef = useRef();
   const history = useHistory();
   const [snackOpen, setErrorSnackOpen] = useState(false);
+  const appCtx = useAppContext();
 
-  async function handleLogin(e) 
+  const handleLogin = async (e) => 
   {
     e.preventDefault();
     var loggedIn = await Api.loginCall(unameTextfieldRef.current.value, pwdTextfieldRef.current.value);
@@ -20,10 +22,12 @@ const Login = () =>
     {
       // Error
       setErrorSnackOpen(true);
+      appCtx.IsLoggedIn = false;
     }
     else
     {
       setErrorSnackOpen(false);
+      appCtx.IsLoggedIn = true;
 
       // Route to main view  
       history.push("/main");

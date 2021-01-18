@@ -1,5 +1,3 @@
-import { AppProvider } from "../../App"
-
 const ApiEndPoint = "https://localhost";
 
 const handleErrors = (response) =>
@@ -29,12 +27,10 @@ const loginCall = async (uName, pwd) =>
     .then(async response => 
     {
         loggedIn = true;
-        AppProvider.loggedIn = true;
     })
     .catch(error => 
     {
         loggedIn = false;
-        AppProvider.loggedIn = false;
     });
 
     return loggedIn;

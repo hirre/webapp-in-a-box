@@ -14,7 +14,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import { AppProvider } from "../../App"
+import { useAppContext } from "../../App";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -83,6 +83,7 @@ const useStyles = makeStyles((theme) => ({
 
 const MainPage = () => 
 {
+  const appCtx = useAppContext();
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
@@ -163,9 +164,9 @@ const MainPage = () =>
     </Menu>
   );
 
-  if (!AppProvider.isLoggedin)
+  if (!appCtx.IsLoggedIn)
   {
-      return (<div>You are not logged in!</div>);  
+    return (<div>You are not logged in!</div>);
   }
 
   return (
