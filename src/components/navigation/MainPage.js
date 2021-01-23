@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Redirect } from "react-router-dom";
 import { fade, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -166,7 +167,7 @@ const MainPage = () =>
 
   if (!appCtx.IsLoggedIn)
   {
-    return (<div>You are not logged in!</div>);
+    return (<div><Redirect to={ {redirect: "/"} }/> </div>);
   }
 
   return (
@@ -235,6 +236,7 @@ const MainPage = () =>
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
+      <a href="test">test link</a>
     </div>
   );
 }
