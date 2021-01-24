@@ -10,7 +10,7 @@ Features include:
 - Main menu with dashboard
 - Cookie based authentication with JWT token support
 - Refresh token support
-- Works well with [Api In A Box](https://github.com/hirre/api-in-a-box)
+- Works well with [API in a Box](https://github.com/hirre/api-in-a-box)
 - and more...
 
 Under construction...
