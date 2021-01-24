@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { fade, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -236,7 +236,7 @@ const MainPage = () =>
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
-      <a href="test">test link</a>
+      <Link to="/test">Test</Link>
     </div>
   );
 }
