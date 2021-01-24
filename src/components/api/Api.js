@@ -16,7 +16,7 @@ const loginCall = async (uName, pwd) =>
 
     const requestOptions =
     {
-        credentials: 'same-origin',
+        credentials: 'include',
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username: uName, password: pwd })

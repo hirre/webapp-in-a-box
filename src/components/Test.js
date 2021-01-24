@@ -12,26 +12,30 @@ const Test = () =>
         return response;
     }
 
-    useEffect(async () => 
+    useEffect(() => 
     {
-        const requestOptions =
+        async function fetchData() 
         {
-            credentials: 'same-origin',
-            method: 'GET',
-            headers: { 'Content-Type': 'application/json' }
-        };
-
-        await fetch("https://localhost/api/AuthTest", requestOptions)
-        .then(handleErrors)
-        .then(async response => 
-        {
-
-        })
-        .catch(error => 
-        {
-
-        });
-    }, []);
+            const requestOptions =
+            {
+                credentials: 'include',
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' }
+            };
+    
+            await fetch("https://localhost/api/AuthTest", requestOptions)
+            .then(handleErrors)
+            .then(async response => 
+            {
+    
+            })
+            .catch(error => 
+            {
+    
+            });
+        }
+        fetchData();
+      }, []);
 
     return (
         <div>Test page</div>
