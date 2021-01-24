@@ -1,3 +1,5 @@
+<img src="./images/logo.png" width="200">
+
 # Web App in a Box
 
 The goal of this project is to have a "ready to go" front-end UI with all necessary features in order to scale web development.
