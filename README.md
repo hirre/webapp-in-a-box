@@ -6,6 +6,9 @@ Features include:
 
 - User registration and login
 - Main menu with dashboard
-- Cookie based authentication with JWT tokens
+- Cookie based authentication with JWT token support
 - Refresh token support
+- Works well with [Api In A Box](https://github.com/hirre/api-in-a-box)
 - and more...
+
+Under construction...
