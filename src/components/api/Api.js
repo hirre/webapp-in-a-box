@@ -10,6 +10,31 @@ const handleErrors = (response) =>
     return response;
 }
 
+const refreshCall = async () =>
+{
+    let loggedIn = false;
+
+    const requestOptions =
+    {
+        credentials: 'include',
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
+    };
+
+    await fetch(ApiEndPoint + "/api/Auth/User/Refresh", requestOptions)
+    .then(handleErrors)
+    .then(async response => 
+    {
+        loggedIn = true;
+    })
+    .catch(error => 
+    {
+        loggedIn = false;
+    });
+
+    return loggedIn;
+};
+
 const loginCall = async (uName, pwd) =>
 {
     let loggedIn = false;
@@ -38,7 +63,8 @@ const loginCall = async (uName, pwd) =>
 
 const Api = 
 {
-    loginCall
+    loginCall,
+    refreshCall
 }
 
 
