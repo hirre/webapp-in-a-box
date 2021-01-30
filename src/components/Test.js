@@ -1,66 +1,47 @@
-import React, { useEffect } from 'react';
-import Api from './api/Api';
-import { useAppContext } from './../App'
+import React, { useEffect } from "react";
+import Api from "./api/Api";
+import { useAppContext } from "./../App";
 
-const Test = () => 
-{
-    const appCtx = useAppContext();
+const Test = () => {
+	const appCtx = useAppContext();
 
-    window.onbeforeunload = async (e) => 
-    {
-        if (appCtx.IsLoggedIn)
-            return;
-            
-        var loggedIn = await Api.refreshCall();
-    
-        if (loggedIn === false)
-        {
-            appCtx.IsLoggedIn = false;
-        }
-        else
-        {
-            appCtx.IsLoggedIn = true;
-        }
-    };
+	window.onbeforeunload = async (e) => {
+		if (appCtx.IsLoggedIn) return;
 
-    const handleErrors = (response) =>
-    {
-        if (!response.ok) 
-        {
-            throw Error(response.statusText);
-        }
+		var loggedIn = await Api.refreshCall();
 
-        return response;
-    }
+		if (loggedIn === false) {
+			appCtx.IsLoggedIn = false;
+		} else {
+			appCtx.IsLoggedIn = true;
+		}
+	};
 
-    useEffect(() => 
-    {
-        async function fetchData() 
-        {
-            const requestOptions =
-            {
-                credentials: 'include',
-                method: 'GET',
-                headers: { 'Content-Type': 'application/json' }
-            };
-    
-            await fetch("https://localhost/api/AuthTest", requestOptions)
-            .then(handleErrors)
-            .then(async response => 
-            {
-    
-            })
-            .catch(error => 
-            {
-    
-            });
-        }
-        fetchData();
-      }, []);
+	const handleErrors = (response) => {
+		if (!response.ok) {
+			throw Error(response.statusText);
+		}
 
-    return (
-        <div>Test page</div>
-    );
-}
+		return response;
+	};
+
+	useEffect(() => {
+		async function fetchData() {
+			const requestOptions = {
+				credentials: "include",
+				method: "GET",
+				headers: { "Content-Type": "application/json" },
+			};
+
+			await fetch("https://localhost/api/AuthTest", requestOptions)
+				.then(handleErrors)
+				.then(async (response) => {})
+				.catch((error) => {});
+		}
+		fetchData();
+	}, []);
+
+	return <div>Test page</div>;
+};
 
 export default Test;
