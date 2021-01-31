@@ -4,8 +4,9 @@ import Api from "./api/Api";
 import { useAppContext } from "./../App";
 
 const Test = () => {
-	const appCtx = useAppContext();
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const appCtx = useAppContext();
+	appCtx.IsLoggedIn = isLoggedIn;
 
 	useEffect(() => {
 		const checkLogin = async () => {
@@ -39,8 +40,6 @@ const Test = () => {
 
 		fetchData();
 	});
-
-	appCtx.IsLoggedIn = isLoggedIn;
 
 	return (
 		<div>

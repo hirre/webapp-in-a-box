@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link, Redirect } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -16,6 +16,7 @@ import MailIcon from "@material-ui/icons/Mail";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import { useAppContext } from "../../App";
+import Api from "./../api/Api";
 
 const useStyles = makeStyles((theme) => ({
 	grow: {
@@ -83,6 +84,26 @@ const useStyles = makeStyles((theme) => ({
 
 const MainPage = () => {
 	const appCtx = useAppContext();
+	const [isLoggedIn, setIsLoggedIn] = useState(appCtx.isLoggedIn);
+	const history = useHistory();
+
+	useEffect(() => {
+		const checkLogin = async () => {
+			setIsLoggedIn(isLoggedIn ? isLoggedIn : await Api.refreshToken());
+			if (isLoggedIn !== undefined && !isLoggedIn) {
+				history.push("/");
+			}
+		};
+
+		checkLogin();
+	}, [isLoggedIn, history]);
+
+	// useEffect(() => {
+	// 	if (!isLoggedIn) {
+	// 		history.push("/");
+	// 	}
+	// }, [isLoggedIn, history]);
+
 	const classes = useStyles();
 	const [anchorEl, setAnchorEl] = useState(null);
 	const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
@@ -162,14 +183,6 @@ const MainPage = () => {
 			</MenuItem>
 		</Menu>
 	);
-
-	if (!appCtx.IsLoggedIn) {
-		return (
-			<div>
-				<Redirect to={{ redirect: "/" }} />{" "}
-			</div>
-		);
-	}
 
 	return (
 		<div className={classes.grow}>
