@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Api from "./api/Api";
 import { useAppContext } from "./../App";
 
@@ -44,7 +45,13 @@ const Test = () => {
 
 	appCtx.IsLoggedIn = isLoggedIn;
 
-	return <div>Is logged in: {"" + appCtx.IsLoggedIn}</div>;
+	return (
+		<div>
+			Is logged in: {"" + appCtx.IsLoggedIn}
+			<br />
+			<Link to="/main">Main</Link>
+		</div>
+	);
 };
 
 export default Test;
