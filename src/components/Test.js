@@ -7,27 +7,12 @@ const Test = () => {
 	const appCtx = useAppContext();
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-	const handleErrors = (response) => {
-		if (!response.ok) {
-			throw Error(response.statusText);
-		}
-
-		return response;
-	};
-
 	useEffect(() => {
-		async function refreshToken() {
-			if (isLoggedIn) return;
-			var loggedIn = await Api.refreshCall();
+		const checkLogin = async () => {
+			setIsLoggedIn(isLoggedIn ? isLoggedIn : await Api.refreshToken());
+		};
 
-			if (loggedIn === false) {
-				setIsLoggedIn(false);
-			} else {
-				setIsLoggedIn(true);
-			}
-		}
-
-		refreshToken();
+		checkLogin();
 	}, [isLoggedIn]);
 
 	useEffect(() => {
@@ -43,6 +28,14 @@ const Test = () => {
 				.then(async (response) => {})
 				.catch((error) => {});
 		}
+
+		const handleErrors = (response) => {
+			if (!response.ok) {
+				throw Error(response.statusText);
+			}
+
+			return response;
+		};
 
 		fetchData();
 	});

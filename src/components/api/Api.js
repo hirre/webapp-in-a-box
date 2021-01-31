@@ -8,7 +8,7 @@ const handleErrors = (response) => {
 	return response;
 };
 
-const refreshCall = async () => {
+const refreshToken = async () => {
 	let loggedIn = false;
 
 	const requestOptions = {
@@ -53,7 +53,7 @@ const loginCall = async (uName, pwd) => {
 
 const Api = {
 	loginCall,
-	refreshCall,
+	refreshToken,
 };
 
 export default Api;
