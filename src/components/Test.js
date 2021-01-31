@@ -16,7 +16,8 @@ const Test = () => {
 	};
 
 	useEffect(() => {
-		async function reloadTest() {
+		async function refreshToken() {
+			if (isLoggedIn) return;
 			var loggedIn = await Api.refreshCall();
 
 			if (loggedIn === false) {
@@ -26,6 +27,10 @@ const Test = () => {
 			}
 		}
 
+		refreshToken();
+	}, [isLoggedIn]);
+
+	useEffect(() => {
 		async function fetchData() {
 			const requestOptions = {
 				credentials: "include",
@@ -39,9 +44,8 @@ const Test = () => {
 				.catch((error) => {});
 		}
 
-		reloadTest();
 		fetchData();
-	}, []);
+	});
 
 	appCtx.IsLoggedIn = isLoggedIn;
 
