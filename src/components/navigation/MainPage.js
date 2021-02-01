@@ -89,20 +89,16 @@ const MainPage = () => {
 
 	useEffect(() => {
 		const checkLogin = async () => {
-			setIsLoggedIn(isLoggedIn ? isLoggedIn : await Api.refreshToken());
-			if (isLoggedIn !== undefined && !isLoggedIn) {
-				history.push("/");
+			if (appCtx.IsLoggedIn !== undefined && !appCtx.IsLoggedIn) {
+				appCtx.IsLoggedIn = await Api.refreshToken();
+				setIsLoggedIn(appCtx.IsLoggedIn);
 			}
+
+			if (!appCtx.IsLoggedIn) history.push("/");
 		};
 
 		checkLogin();
-	}, [isLoggedIn, history]);
-
-	// useEffect(() => {
-	// 	if (!isLoggedIn) {
-	// 		history.push("/");
-	// 	}
-	// }, [isLoggedIn, history]);
+	}, [isLoggedIn, appCtx, history]);
 
 	const classes = useStyles();
 	const [anchorEl, setAnchorEl] = useState(null);
@@ -183,6 +179,8 @@ const MainPage = () => {
 			</MenuItem>
 		</Menu>
 	);
+
+	if (!appCtx.IsLoggedIn) return <div>...</div>;
 
 	return (
 		<div className={classes.grow}>

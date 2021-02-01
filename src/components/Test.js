@@ -5,16 +5,18 @@ import { useAppContext } from "./../App";
 
 const Test = () => {
 	const appCtx = useAppContext();
-	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const [isLoggedIn, setIsLoggedIn] = useState(appCtx.IsLoggedIn);
 
 	useEffect(() => {
 		const checkLogin = async () => {
-			if (isLoggedIn !== undefined && !isLoggedIn)
-				setIsLoggedIn(await Api.refreshToken());
+			if (appCtx.IsLoggedIn !== undefined && !appCtx.IsLoggedIn) {
+				appCtx.IsLoggedIn = await Api.refreshToken();
+				setIsLoggedIn(appCtx.IsLoggedIn);
+			}
 		};
 
 		checkLogin();
-	}, [isLoggedIn]);
+	}, [isLoggedIn, appCtx]);
 
 	useEffect(() => {
 		async function fetchData() {
@@ -43,7 +45,7 @@ const Test = () => {
 
 	return (
 		<div>
-			Is logged in: {"" + isLoggedIn}
+			Is logged in: {"" + appCtx.IsLoggedIn}
 			<br />
 			<Link to="/main">Main</Link>
 		</div>
