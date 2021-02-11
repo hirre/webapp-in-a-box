@@ -1,13 +1,17 @@
 const ApiEndPoint = "https://localhost";
 
-const handleErrors = (response) => {
+const handleErrors = async (response) => {
 	if (!response.ok) {
-		throw Error(response.statusText);
+		let msg = "";
+		await response.json().then((data) => {
+			msg = data["Exception"];
+		});
+
+		throw Error(msg);
 	}
 
 	return response;
 };
-
 const refreshToken = async () => {
 	let loggedIn = false;
 
@@ -51,9 +55,36 @@ const loginCall = async (uName, pwd) => {
 	return loggedIn;
 };
 
+const signupCall = async (uName, pwd, email) => {
+	const requestOptions = {
+		credentials: "include",
+		method: "POST",
+		headers: { "Content-Type": "application/json" },
+		body: JSON.stringify({
+			username: uName,
+			password: pwd,
+			activationemail: email,
+		}),
+	};
+
+	let msg = "Signup failed!";
+
+	await fetch(ApiEndPoint + "/api/Register/User", requestOptions)
+		.then(handleErrors)
+		.then(async (response) => {
+			msg = "";
+		})
+		.catch((error) => {
+			msg = error.message;
+		});
+
+	return msg;
+};
+
 const Api = {
 	loginCall,
 	refreshToken,
+	signupCall,
 };
 
 export default Api;

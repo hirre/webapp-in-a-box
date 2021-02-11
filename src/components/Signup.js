@@ -1,7 +1,34 @@
 import React, { useRef, useState } from "react";
-import { Button, TextField, Typography, Box } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
+
+import {
+	Button,
+	TextField,
+	Typography,
+	Box,
+	Snackbar,
+	IconButton,
+} from "@material-ui/core";
+import CloseIcon from "@material-ui/icons/Close";
+import { makeStyles } from "@material-ui/core/styles";
+import Collapse from "@material-ui/core/Collapse";
+import { Alert, AlertTitle } from "@material-ui/lab";
+
+import Api from "./api/Api";
 
 const Signup = () => {
+	const useStyles = makeStyles((theme) => ({
+		root: {
+			width: "100%",
+			"& > * + *": {
+				marginTop: theme.spacing(2),
+			},
+		},
+	}));
+
+	const history = useHistory();
+	const classes = useStyles();
+	const [successSignup, setSuccessSignupOpen] = useState(false);
 	const unameTextfieldRef = useRef();
 	const [unameErrorState, setUnameErrorState] = useState(false);
 	const pwd1TextfieldRef = useRef();
@@ -13,6 +40,8 @@ const Signup = () => {
 	const [email1ErrorState, setEmail1ErrorState] = useState(false);
 	const email2TextfieldRef = useRef();
 	const [email2ErrorState, setEmail2ErrorState] = useState(false);
+	const [snackOpen, setErrorSnackOpen] = useState(false);
+	const [snackMessage, setSnackMessage] = useState("");
 
 	const handleSignup = async (e) => {
 		e.preventDefault();
@@ -89,6 +118,22 @@ const Signup = () => {
 			setEmail2ErrorState(true);
 			return;
 		}
+
+		// Register new user
+		let signupStatus = await Api.signupCall(
+			unameTextfieldRef.current.value,
+			pwd1TextfieldRef.current.value,
+			email1TextfieldRef.current.value
+		);
+
+		if (signupStatus === "") {
+			setErrorSnackOpen(false);
+			setSuccessSignupOpen(true);
+		} else {
+			setSnackMessage(signupStatus);
+			// Error
+			setErrorSnackOpen(true);
+		}
 	};
 
 	const validateEmail = (email) => {
@@ -163,6 +208,51 @@ const Signup = () => {
 				minHeight="100vh"
 			>
 				<form noValidate autoComplete="on" onSubmit={handleSignup}>
+					<div className={classes.root}>
+						<Collapse in={successSignup}>
+							<Alert
+								variant="filled"
+								action={
+									<IconButton
+										aria-label="close"
+										color="inherit"
+										size="small"
+										onClick={() => {
+											setSuccessSignupOpen(false);
+										}}
+									>
+										<CloseIcon fontSize="inherit" />
+									</IconButton>
+								}
+							>
+								<AlertTitle>Signup successful!</AlertTitle>
+								Don't forget to activate you account.
+							</Alert>
+						</Collapse>
+						<Snackbar
+							anchorOrigin={{
+								vertical: "top",
+								horizontal: "center",
+							}}
+							open={snackOpen}
+							autoHideDuration={6000}
+							onClose={() => setErrorSnackOpen(false)}
+							message={snackMessage}
+							action={
+								<React.Fragment>
+									<IconButton
+										size="small"
+										aria-label="close"
+										color="inherit"
+										onClick={() => setErrorSnackOpen(false)}
+									>
+										<CloseIcon fontSize="small" />
+									</IconButton>
+								</React.Fragment>
+							}
+						/>
+					</div>
+
 					<Typography variant="h4" component="h2" direction="center">
 						Signup
 					</Typography>
