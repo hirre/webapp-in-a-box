@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import {
 	Button,
 	TextField,
@@ -110,7 +110,9 @@ const Login = () => {
 						</Button>
 					</div>
 
-					<div>Sign up</div>
+					<div>
+						<Link to="/signup">Sign up</Link>
+					</div>
 				</form>
 			</Box>
 		</React.Fragment>
