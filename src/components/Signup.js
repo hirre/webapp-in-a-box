@@ -199,6 +199,11 @@ const Signup = () => {
 		return error;
 	};
 
+	const handleSuccessClose = () => {
+		setErrorSnackOpen(false);
+		history.push("/");
+	};
+
 	return (
 		<React.Fragment>
 			<Box
@@ -244,7 +249,7 @@ const Signup = () => {
 										size="small"
 										aria-label="close"
 										color="inherit"
-										onClick={() => setErrorSnackOpen(false)}
+										onClick={handleSuccessClose}
 									>
 										<CloseIcon fontSize="small" />
 									</IconButton>
@@ -253,89 +258,94 @@ const Signup = () => {
 						/>
 					</div>
 
-					<Typography variant="h4" component="h2" direction="center">
-						Signup
-					</Typography>
-
-					<br />
-
-					<TextField
-						id="username"
-						label="Username"
-						error={unameErrorState}
-						defaultValue=""
-						variant="outlined"
-						inputRef={unameTextfieldRef}
-						InputProps={{
-							style: { marginBottom: 10 },
-						}}
-					/>
-
-					<br />
-
-					<TextField
-						id="password1"
-						label="Password"
-						error={pwd1ErrorState}
-						type="password"
-						autoComplete="current-password"
-						variant="outlined"
-						inputRef={pwd1TextfieldRef}
-						helperText={pwd1HelperText}
-						InputProps={{
-							style: { marginBottom: 10 },
-						}}
-					/>
-
-					<br />
-
-					<TextField
-						id="password2"
-						label="Re-enter password"
-						error={pwd2ErrorState}
-						type="password"
-						autoComplete="current-password"
-						variant="outlined"
-						inputRef={pwd2TextfieldRef}
-						InputProps={{
-							style: { marginBottom: 10 },
-						}}
-					/>
-
-					<br />
-
-					<TextField
-						id="email"
-						label="E-mail"
-						error={email1ErrorState}
-						defaultValue=""
-						variant="outlined"
-						inputRef={email1TextfieldRef}
-						InputProps={{
-							style: { marginBottom: 10 },
-						}}
-					/>
-
-					<br />
-
-					<TextField
-						id="email"
-						label="Re-enter e-mail"
-						error={email2ErrorState}
-						defaultValue=""
-						variant="outlined"
-						inputRef={email2TextfieldRef}
-						InputProps={{
-							style: { marginBottom: 10 },
-						}}
-					/>
-
-					<br />
-
-					<div dir="rtl">
-						<Button type="submit" variant="contained" color="primary">
+					<div
+						id="signupcontext"
+						style={{ display: !successSignup ? "block" : "none" }}
+					>
+						<Typography variant="h4" component="h2" direction="center">
 							Signup
-						</Button>
+						</Typography>
+
+						<br />
+
+						<TextField
+							id="username"
+							label="Username"
+							error={unameErrorState}
+							defaultValue=""
+							variant="outlined"
+							inputRef={unameTextfieldRef}
+							InputProps={{
+								style: { marginBottom: 10 },
+							}}
+						/>
+
+						<br />
+
+						<TextField
+							id="password1"
+							label="Password"
+							error={pwd1ErrorState}
+							type="password"
+							autoComplete="current-password"
+							variant="outlined"
+							inputRef={pwd1TextfieldRef}
+							helperText={pwd1HelperText}
+							InputProps={{
+								style: { marginBottom: 10 },
+							}}
+						/>
+
+						<br />
+
+						<TextField
+							id="password2"
+							label="Re-enter password"
+							error={pwd2ErrorState}
+							type="password"
+							autoComplete="current-password"
+							variant="outlined"
+							inputRef={pwd2TextfieldRef}
+							InputProps={{
+								style: { marginBottom: 10 },
+							}}
+						/>
+
+						<br />
+
+						<TextField
+							id="email"
+							label="E-mail"
+							error={email1ErrorState}
+							defaultValue=""
+							variant="outlined"
+							inputRef={email1TextfieldRef}
+							InputProps={{
+								style: { marginBottom: 10 },
+							}}
+						/>
+
+						<br />
+
+						<TextField
+							id="email"
+							label="Re-enter e-mail"
+							error={email2ErrorState}
+							defaultValue=""
+							variant="outlined"
+							inputRef={email2TextfieldRef}
+							InputProps={{
+								style: { marginBottom: 10 },
+							}}
+						/>
+
+						<br />
+
+						<div dir="rtl">
+							<Button type="submit" variant="contained" color="primary">
+								Signup
+							</Button>
+						</div>
 					</div>
 				</form>
 			</Box>

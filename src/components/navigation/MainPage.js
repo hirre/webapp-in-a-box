@@ -10,6 +10,7 @@ import Badge from "@material-ui/core/Badge";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import MenuIcon from "@material-ui/icons/Menu";
+import LockIcon from "@material-ui/icons/Lock";
 import SearchIcon from "@material-ui/icons/Search";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MailIcon from "@material-ui/icons/Mail";
@@ -123,6 +124,15 @@ const MainPage = () => {
 		setMobileMoreAnchorEl(event.currentTarget);
 	};
 
+	const handleLogout = async () => {
+		setAnchorEl(null);
+		handleMobileMenuClose();
+
+		let logoutResult = await Api.logoutCall();
+		appCtx.IsLoggedIn = false;
+		if (logoutResult === "") history.push("/");
+	};
+
 	const menuId = "primary-search-account-menu";
 	const renderMenu = (
 		<Menu
@@ -136,6 +146,7 @@ const MainPage = () => {
 		>
 			<MenuItem onClick={handleMenuClose}>Profile</MenuItem>
 			<MenuItem onClick={handleMenuClose}>My account</MenuItem>
+			<MenuItem onClick={handleLogout}>Logout</MenuItem>
 		</Menu>
 	);
 
@@ -177,6 +188,10 @@ const MainPage = () => {
 				</IconButton>
 				<p>Profile</p>
 			</MenuItem>
+			<MenuItem onClick={handleLogout}>
+				<LockIcon />
+				<p>Logout</p>
+			</MenuItem>
 		</Menu>
 	);
 
@@ -195,7 +210,7 @@ const MainPage = () => {
 						<MenuIcon />
 					</IconButton>
 					<Typography className={classes.title} variant="h6" noWrap>
-						Material-UI
+						App in a Box
 					</Typography>
 					<div className={classes.search}>
 						<div className={classes.searchIcon}>

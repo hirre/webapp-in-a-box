@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import {
 	Button,
@@ -15,9 +15,23 @@ import { useAppContext } from "../App";
 const Login = () => {
 	const unameTextfieldRef = useRef();
 	const pwdTextfieldRef = useRef();
-	const history = useHistory();
 	const [snackOpen, setErrorSnackOpen] = useState(false);
 	const appCtx = useAppContext();
+	const [isLoggedIn, setIsLoggedIn] = useState(appCtx.isLoggedIn);
+	const history = useHistory();
+
+	useEffect(() => {
+		const checkLogin = async () => {
+			if (appCtx.IsLoggedIn !== undefined && !appCtx.IsLoggedIn) {
+				appCtx.IsLoggedIn = await Api.refreshToken();
+				setIsLoggedIn(appCtx.IsLoggedIn);
+			}
+
+			if (appCtx.IsLoggedIn) history.push("/main");
+		};
+
+		checkLogin();
+	}, [isLoggedIn, appCtx, history]);
 
 	const handleLogin = async (e) => {
 		e.preventDefault();

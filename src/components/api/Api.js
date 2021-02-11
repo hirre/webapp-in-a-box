@@ -81,10 +81,32 @@ const signupCall = async (uName, pwd, email) => {
 	return msg;
 };
 
+const logoutCall = async () => {
+	const requestOptions = {
+		credentials: "include",
+		method: "POST",
+		headers: { "Content-Type": "application/json" },
+	};
+
+	let msg = "Logout failed!";
+
+	await fetch(ApiEndPoint + "/api/Auth/Logout", requestOptions)
+		.then(handleErrors)
+		.then(async (response) => {
+			msg = "";
+		})
+		.catch((error) => {
+			msg = error.message;
+		});
+
+	return msg;
+};
+
 const Api = {
 	loginCall,
 	refreshToken,
 	signupCall,
+	logoutCall,
 };
 
 export default Api;
