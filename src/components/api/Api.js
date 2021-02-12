@@ -105,6 +105,30 @@ const activationCall = async (tempCode) => {
 	return msg;
 };
 
+const resendActivationCall = async (email) => {
+	const requestOptions = {
+		credentials: "include",
+		method: "GET",
+		headers: { "Content-Type": "application/json" },
+	};
+
+	let msg = "Activation failed!";
+
+	await fetch(
+		ApiEndPoint + "/api/Register/ResendActivationEmail/" + email,
+		requestOptions
+	)
+		.then(handleErrors)
+		.then(async (response) => {
+			msg = "";
+		})
+		.catch((error) => {
+			msg = error.message;
+		});
+
+	return msg;
+};
+
 const logoutCall = async () => {
 	const requestOptions = {
 		credentials: "include",
@@ -132,6 +156,7 @@ const Api = {
 	signupCall,
 	logoutCall,
 	activationCall,
+	resendActivationCall,
 };
 
 export default Api;

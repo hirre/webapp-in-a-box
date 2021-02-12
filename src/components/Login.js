@@ -124,6 +124,9 @@ const Login = () => {
 
 					<div>
 						<Link to="/signup">Sign up</Link>
+						<br />
+						<br />
+						<Link to="/resendActivation">Forgot your password?</Link>
 					</div>
 				</form>
 			</Box>

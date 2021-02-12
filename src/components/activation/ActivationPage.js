@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { withStyles } from "@material-ui/core/styles";
 import { Typography, Box } from "@material-ui/core";
 import { useLocation, useHistory } from "react-router-dom";
-import Api from "./api/Api";
+import Api from "../api/Api";
 
 const ActivationPage = () => {
 	const history = useHistory();

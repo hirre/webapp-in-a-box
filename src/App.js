@@ -3,7 +3,8 @@ import React, { createContext, useContext } from "react";
 import Login from "./components/Login";
 import Test from "./components/Test";
 import Signup from "./components/Signup";
-import ActivationPage from "./components/ActivationPage";
+import ActivationPage from "./components/activation/ActivationPage";
+import ResendActivation from "./components/activation/ResendActivation";
 import MainPage from "./components/navigation/MainPage";
 import "./App.css";
 
@@ -31,6 +32,7 @@ const App = () => {
 				<Route exact path="/test" component={Test} />
 				<Route exact path="/signup" component={Signup} />
 				<Route exact path="/activation" component={ActivationPage} />
+				<Route exact path="/resendActivation" component={ResendActivation} />
 			</Switch>
 		</BrowserRouter>
 	);
