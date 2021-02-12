@@ -81,6 +81,30 @@ const signupCall = async (uName, pwd, email) => {
 	return msg;
 };
 
+const activationCall = async (tempCode) => {
+	const requestOptions = {
+		credentials: "include",
+		method: "GET",
+		headers: { "Content-Type": "application/json" },
+	};
+
+	let msg = "Activation failed!";
+
+	await fetch(
+		ApiEndPoint + "/api/Register/ActivateUser/" + tempCode,
+		requestOptions
+	)
+		.then(handleErrors)
+		.then(async (response) => {
+			msg = "";
+		})
+		.catch((error) => {
+			msg = error.message;
+		});
+
+	return msg;
+};
+
 const logoutCall = async () => {
 	const requestOptions = {
 		credentials: "include",
@@ -107,6 +131,7 @@ const Api = {
 	refreshToken,
 	signupCall,
 	logoutCall,
+	activationCall,
 };
 
 export default Api;
