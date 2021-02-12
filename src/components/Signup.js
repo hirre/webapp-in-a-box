@@ -19,10 +19,8 @@ import Api from "./api/Api";
 const Signup = () => {
 	const useStyles = makeStyles((theme) => ({
 		root: {
-			width: "100%",
-			"& > * + *": {
-				marginTop: theme.spacing(2),
-			},
+			width: "30%",
+			margin: "0 auto",
 		},
 	}));
 
@@ -206,145 +204,146 @@ const Signup = () => {
 
 	return (
 		<React.Fragment>
+			<div className={classes.root}>
+				<Collapse in={successSignup}>
+					<Alert
+						variant="filled"
+						action={
+							<IconButton
+								aria-label="close"
+								color="inherit"
+								size="small"
+								onClick={handleSuccessClose}
+							>
+								<CloseIcon fontSize="inherit" />
+							</IconButton>
+						}
+					>
+						<AlertTitle>Signup successful!</AlertTitle>
+						Don't forget to activate you account.
+					</Alert>
+				</Collapse>
+			</div>
+
 			<Box
 				display="flex"
 				justifyContent="center"
 				alignItems="center"
 				minHeight="100vh"
+				visibility={!successSignup ? "visible" : "hidden"}
 			>
-				<form noValidate autoComplete="on" onSubmit={handleSignup}>
-					<div className={classes.root}>
-						<Collapse in={successSignup}>
-							<Alert
-								variant="filled"
-								action={
-									<IconButton
-										aria-label="close"
-										color="inherit"
-										size="small"
-										onClick={handleSuccessClose}
-									>
-										<CloseIcon fontSize="inherit" />
-									</IconButton>
-								}
+				<Snackbar
+					anchorOrigin={{
+						vertical: "top",
+						horizontal: "center",
+					}}
+					open={snackOpen}
+					autoHideDuration={6000}
+					onClose={() => setErrorSnackOpen(false)}
+					message={snackMessage}
+					action={
+						<React.Fragment>
+							<IconButton
+								size="small"
+								aria-label="close"
+								color="inherit"
+								onClick={() => setErrorSnackOpen(false)}
 							>
-								<AlertTitle>Signup successful!</AlertTitle>
-								Don't forget to activate you account.
-							</Alert>
-						</Collapse>
-						<Snackbar
-							anchorOrigin={{
-								vertical: "top",
-								horizontal: "center",
-							}}
-							open={snackOpen}
-							autoHideDuration={6000}
-							onClose={() => setErrorSnackOpen(false)}
-							message={snackMessage}
-							action={
-								<React.Fragment>
-									<IconButton
-										size="small"
-										aria-label="close"
-										color="inherit"
-										onClick={() => setErrorSnackOpen(false)}
-									>
-										<CloseIcon fontSize="small" />
-									</IconButton>
-								</React.Fragment>
-							}
-						/>
-					</div>
-
-					<div
+								<CloseIcon fontSize="small" />
+							</IconButton>
+						</React.Fragment>
+					}
+				/>
+				<form noValidate autoComplete="on" onSubmit={handleSignup}>
+					{/* <div
 						id="signupcontext"
 						style={{ display: !successSignup ? "block" : "none" }}
-					>
-						<Typography variant="h4" component="h2" direction="center">
+					> */}
+					<Typography variant="h4" component="h2" direction="center">
+						Signup
+					</Typography>
+
+					<br />
+
+					<TextField
+						id="username"
+						label="Username"
+						error={unameErrorState}
+						defaultValue=""
+						variant="outlined"
+						inputRef={unameTextfieldRef}
+						InputProps={{
+							style: { marginBottom: 10 },
+						}}
+					/>
+
+					<br />
+
+					<TextField
+						id="password1"
+						label="Password"
+						error={pwd1ErrorState}
+						type="password"
+						autoComplete="current-password"
+						variant="outlined"
+						inputRef={pwd1TextfieldRef}
+						helperText={pwd1HelperText}
+						InputProps={{
+							style: { marginBottom: 10 },
+						}}
+					/>
+
+					<br />
+
+					<TextField
+						id="password2"
+						label="Re-enter password"
+						error={pwd2ErrorState}
+						type="password"
+						autoComplete="current-password"
+						variant="outlined"
+						inputRef={pwd2TextfieldRef}
+						InputProps={{
+							style: { marginBottom: 10 },
+						}}
+					/>
+
+					<br />
+
+					<TextField
+						id="email"
+						label="E-mail"
+						error={email1ErrorState}
+						defaultValue=""
+						variant="outlined"
+						inputRef={email1TextfieldRef}
+						InputProps={{
+							style: { marginBottom: 10 },
+						}}
+					/>
+
+					<br />
+
+					<TextField
+						id="email"
+						label="Re-enter e-mail"
+						error={email2ErrorState}
+						defaultValue=""
+						variant="outlined"
+						inputRef={email2TextfieldRef}
+						InputProps={{
+							style: { marginBottom: 10 },
+						}}
+					/>
+
+					<br />
+
+					<div dir="rtl">
+						<Button type="submit" variant="contained" color="primary">
 							Signup
-						</Typography>
-
-						<br />
-
-						<TextField
-							id="username"
-							label="Username"
-							error={unameErrorState}
-							defaultValue=""
-							variant="outlined"
-							inputRef={unameTextfieldRef}
-							InputProps={{
-								style: { marginBottom: 10 },
-							}}
-						/>
-
-						<br />
-
-						<TextField
-							id="password1"
-							label="Password"
-							error={pwd1ErrorState}
-							type="password"
-							autoComplete="current-password"
-							variant="outlined"
-							inputRef={pwd1TextfieldRef}
-							helperText={pwd1HelperText}
-							InputProps={{
-								style: { marginBottom: 10 },
-							}}
-						/>
-
-						<br />
-
-						<TextField
-							id="password2"
-							label="Re-enter password"
-							error={pwd2ErrorState}
-							type="password"
-							autoComplete="current-password"
-							variant="outlined"
-							inputRef={pwd2TextfieldRef}
-							InputProps={{
-								style: { marginBottom: 10 },
-							}}
-						/>
-
-						<br />
-
-						<TextField
-							id="email"
-							label="E-mail"
-							error={email1ErrorState}
-							defaultValue=""
-							variant="outlined"
-							inputRef={email1TextfieldRef}
-							InputProps={{
-								style: { marginBottom: 10 },
-							}}
-						/>
-
-						<br />
-
-						<TextField
-							id="email"
-							label="Re-enter e-mail"
-							error={email2ErrorState}
-							defaultValue=""
-							variant="outlined"
-							inputRef={email2TextfieldRef}
-							InputProps={{
-								style: { marginBottom: 10 },
-							}}
-						/>
-
-						<br />
-
-						<div dir="rtl">
-							<Button type="submit" variant="contained" color="primary">
-								Signup
-							</Button>
-						</div>
+						</Button>
 					</div>
+					{/* </div> */}
 				</form>
 			</Box>
 		</React.Fragment>
