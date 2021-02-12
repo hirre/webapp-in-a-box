@@ -263,7 +263,6 @@ const MainPage = () => {
 			</AppBar>
 			{renderMobileMenu}
 			{renderMenu}
-			<Link to="/test">Test</Link>
 		</div>
 	);
 };
