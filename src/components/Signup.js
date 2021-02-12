@@ -201,7 +201,7 @@ const Signup = () => {
 
 	const handleSuccessClose = () => {
 		setErrorSnackOpen(false);
-		history.push("/");
+		history.push("/login");
 	};
 
 	return (
@@ -222,9 +222,7 @@ const Signup = () => {
 										aria-label="close"
 										color="inherit"
 										size="small"
-										onClick={() => {
-											setSuccessSignupOpen(false);
-										}}
+										onClick={handleSuccessClose}
 									>
 										<CloseIcon fontSize="inherit" />
 									</IconButton>
@@ -249,7 +247,7 @@ const Signup = () => {
 										size="small"
 										aria-label="close"
 										color="inherit"
-										onClick={handleSuccessClose}
+										onClick={() => setErrorSnackOpen(false)}
 									>
 										<CloseIcon fontSize="small" />
 									</IconButton>

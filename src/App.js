@@ -1,4 +1,4 @@
-import { Switch, BrowserRouter, Route } from "react-router-dom";
+import { Switch, BrowserRouter, Route, Redirect } from "react-router-dom";
 import React, { createContext, useContext } from "react";
 import Login from "./components/Login";
 import Test from "./components/Test";
@@ -22,7 +22,10 @@ const App = () => {
 	return (
 		<BrowserRouter>
 			<Switch>
-				<Route exact path="/" component={Login} />
+				<Route exact path="/">
+					<Redirect to="/login" />
+				</Route>
+				<Route exact path="/login" component={Login} />
 				<Route exact path="/main" component={MainPage} />
 				<Route exact path="/test" component={Test} />
 				<Route exact path="/signup" component={Signup} />
