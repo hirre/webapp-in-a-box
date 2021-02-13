@@ -9,6 +9,7 @@ Features include:
 - User registration and login
 - Main menu/page
 - Cookie based authentication with JWT token support
+- ReCaptcha support
 - Refresh token support
 - Works well with [API in a Box](https://github.com/hirre/api-in-a-box)
 - and more...
