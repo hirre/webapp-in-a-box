@@ -7,9 +7,9 @@ The goal of this project is to have a "ready to go" front-end UI with many neces
 Features include:
 
 - User registration and login
+- ReCaptcha support
 - Main menu/page
 - Cookie based authentication with JWT token support
-- ReCaptcha support
 - Refresh token support
 - Works well with [API in a Box](https://github.com/hirre/api-in-a-box)
 - and more...
