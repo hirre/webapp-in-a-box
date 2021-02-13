@@ -55,7 +55,7 @@ const loginCall = async (uName, pwd) => {
 	return loggedIn;
 };
 
-const signupCall = async (uName, pwd, email) => {
+const signupCall = async (uName, pwd, email, reCaptchaValue) => {
 	const requestOptions = {
 		credentials: "include",
 		method: "POST",
@@ -64,6 +64,7 @@ const signupCall = async (uName, pwd, email) => {
 			username: uName,
 			password: pwd,
 			activationemail: email,
+			recaptcha: reCaptchaValue,
 		}),
 	};
 

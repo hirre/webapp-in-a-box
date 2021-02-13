@@ -1,3 +1,4 @@
+import ReCAPTCHA from "react-google-recaptcha";
 import React, { useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 
@@ -40,6 +41,7 @@ const Signup = () => {
 	const [email2ErrorState, setEmail2ErrorState] = useState(false);
 	const [snackOpen, setErrorSnackOpen] = useState(false);
 	const [snackMessage, setSnackMessage] = useState("");
+	const [reCaptchaValue, setReCaptchaValue] = useState("");
 
 	const handleSignup = async (e) => {
 		e.preventDefault();
@@ -117,11 +119,22 @@ const Signup = () => {
 			return;
 		}
 
+		if (
+			reCaptchaValue === null ||
+			reCaptchaValue === undefined ||
+			reCaptchaValue === ""
+		) {
+			setSnackMessage("ReCaptcha not set!");
+			setErrorSnackOpen(true);
+			return;
+		}
+
 		// Register new user
 		let signupStatus = await Api.signupCall(
 			unameTextfieldRef.current.value,
 			pwd1TextfieldRef.current.value,
-			email1TextfieldRef.current.value
+			email1TextfieldRef.current.value,
+			reCaptchaValue
 		);
 
 		if (signupStatus === "") {
@@ -202,6 +215,10 @@ const Signup = () => {
 		history.push("/login");
 	};
 
+	const handleCaptcha = (value) => {
+		setReCaptchaValue(value);
+	};
+
 	return (
 		<React.Fragment>
 			<div className={classes.root}>
@@ -255,10 +272,6 @@ const Signup = () => {
 					}
 				/>
 				<form noValidate autoComplete="on" onSubmit={handleSignup}>
-					{/* <div
-						id="signupcontext"
-						style={{ display: !successSignup ? "block" : "none" }}
-					> */}
 					<Typography variant="h4" component="h2" direction="center">
 						Signup
 					</Typography>
@@ -337,7 +350,11 @@ const Signup = () => {
 					/>
 
 					<br />
-
+					<ReCAPTCHA
+						sitekey="6Le98lYaAAAAABY5TCbGkjLx8zInvroIO6Ka-r-k"
+						onChange={handleCaptcha}
+					/>
+					<br />
 					<div dir="rtl">
 						<Button type="submit" variant="contained" color="primary">
 							Signup
