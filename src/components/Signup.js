@@ -286,7 +286,7 @@ const Signup = () => {
 						variant="outlined"
 						inputRef={unameTextfieldRef}
 						InputProps={{
-							style: { marginBottom: 10 },
+							style: { marginBottom: 10, width: 300 },
 						}}
 					/>
 
@@ -302,7 +302,7 @@ const Signup = () => {
 						inputRef={pwd1TextfieldRef}
 						helperText={pwd1HelperText}
 						InputProps={{
-							style: { marginBottom: 10 },
+							style: { marginBottom: 10, width: 300 },
 						}}
 					/>
 
@@ -317,7 +317,7 @@ const Signup = () => {
 						variant="outlined"
 						inputRef={pwd2TextfieldRef}
 						InputProps={{
-							style: { marginBottom: 10 },
+							style: { marginBottom: 10, width: 300 },
 						}}
 					/>
 
@@ -331,7 +331,7 @@ const Signup = () => {
 						variant="outlined"
 						inputRef={email1TextfieldRef}
 						InputProps={{
-							style: { marginBottom: 10 },
+							style: { marginBottom: 10, width: 300 },
 						}}
 					/>
 
@@ -345,7 +345,7 @@ const Signup = () => {
 						variant="outlined"
 						inputRef={email2TextfieldRef}
 						InputProps={{
-							style: { marginBottom: 10 },
+							style: { marginBottom: 10, width: 300 },
 						}}
 					/>
 
