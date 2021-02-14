@@ -360,7 +360,6 @@ const Signup = () => {
 							Signup
 						</Button>
 					</div>
-					{/* </div> */}
 				</form>
 			</Box>
 		</React.Fragment>
