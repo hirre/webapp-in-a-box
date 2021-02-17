@@ -8,6 +8,7 @@ Features include:
 
 - User registration and login
 - ReCaptcha support
+- Activation e-mail support
 - Main menu/page
 - Cookie based authentication with JWT token support
 - Refresh token support
