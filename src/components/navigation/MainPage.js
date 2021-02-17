@@ -34,6 +34,7 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import { useAppContext } from "../../App";
 import Api from "./../api/Api";
+import Dashboard from "../Dashboard";
 
 const useStyles = makeStyles((theme) => ({
 	grow: {
@@ -282,6 +283,9 @@ const MainPage = () => {
 			</AppBar>
 			{renderMobileMenu}
 			{renderMenu}
+			<p>
+				<Dashboard />
+			</p>
 		</div>
 	);
 };
