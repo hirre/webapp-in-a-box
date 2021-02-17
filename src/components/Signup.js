@@ -1,7 +1,22 @@
+/*
+	Copyright 2021 Hirad Asadi (Web App in a Box)
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+		http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+*/
+
 import ReCAPTCHA from "react-google-recaptcha";
 import React, { useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
-
 import {
 	Button,
 	TextField,
@@ -43,6 +58,10 @@ const Signup = () => {
 	const [snackMessage, setSnackMessage] = useState("");
 	const [reCaptchaValue, setReCaptchaValue] = useState("");
 
+	/**
+	 * Handles the signup form event. Validates data fields.
+	 * @param  {event} e event.
+	 */
 	const handleSignup = async (e) => {
 		e.preventDefault();
 
@@ -147,11 +166,21 @@ const Signup = () => {
 		}
 	};
 
+	/**
+	 * Validates e-mail field.
+	 * @param  {string} email The e-mail address.
+	 * @returns {boolean} True on succes, else false.
+	 */
 	const validateEmail = (email) => {
 		const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 		return re.test(String(email).toLowerCase());
 	};
 
+	/**
+	 * Checks if password is strong enough.
+	 * @param  {string} password The password.
+	 * @returns {boolean} True on a valid password strength, else false.
+	 */
 	const checkPasswordStrength = (password) => {
 		// If textBox is empty
 		if (password.length === 0) {
@@ -210,11 +239,18 @@ const Signup = () => {
 		return error;
 	};
 
+	/**
+	 * 	Handles the close event when closing the success dialog.
+	 */
 	const handleSuccessClose = () => {
 		setErrorSnackOpen(false);
 		history.push("/login");
 	};
 
+	/**
+	 * Sets the captcha value.
+	 * @param  {string} value The captcha value.
+	 */
 	const handleCaptcha = (value) => {
 		setReCaptchaValue(value);
 	};

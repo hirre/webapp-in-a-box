@@ -8,6 +8,6 @@
 		"prettier.useTabs": true
 	},
 	"extensions": {
-		"recommendations": ["esbenp.prettier-vscode", "msjsdiag.vscode-react-native", "msjsdiag.debugger-for-chrome"]
+		"recommendations": ["esbenp.prettier-vscode", "msjsdiag.vscode-react-native", "msjsdiag.debugger-for-chrome", "stevencl.adddoccomments"]
 	}
 }

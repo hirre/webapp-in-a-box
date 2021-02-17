@@ -1,5 +1,25 @@
+/*
+	Copyright 2021 Hirad Asadi (Web App in a Box)
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+		http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+*/
+
 const ApiEndPoint = "https://localhost";
 
+/**
+ * Handle errors.
+ * @param  {response} response object.
+ */
 const handleErrors = async (response) => {
 	if (!response.ok) {
 		let msg = "";
@@ -12,6 +32,11 @@ const handleErrors = async (response) => {
 
 	return response;
 };
+
+/**
+ * Send refresh token to get access token.
+ * @returns {boolean} true on success (logged in), else false.
+ */
 const refreshToken = async () => {
 	let loggedIn = false;
 
@@ -33,6 +58,11 @@ const refreshToken = async () => {
 	return loggedIn;
 };
 
+/**
+ * Login.
+ * @param  {string} uName The username.
+ * @param  {string} pwd The password.
+ */
 const loginCall = async (uName, pwd) => {
 	let loggedIn = false;
 
@@ -55,6 +85,14 @@ const loginCall = async (uName, pwd) => {
 	return loggedIn;
 };
 
+/**
+ * Signup user.
+ * @param  {string} uName The username.
+ * @param  {string} pwd The password.
+ * @param  {string} email The e-mail address.
+ * @param  {string} reCaptchaValue The ReCaptcha value.
+ * @returns {string} empty string on success, else error string.
+ */
 const signupCall = async (uName, pwd, email, reCaptchaValue) => {
 	const requestOptions = {
 		credentials: "include",
@@ -82,6 +120,11 @@ const signupCall = async (uName, pwd, email, reCaptchaValue) => {
 	return msg;
 };
 
+/**
+ * Activates a user account.
+ * @param  {string} tempCode The temporary code.
+ * @returns {string} empty string on success, else error string.
+ */
 const activationCall = async (tempCode) => {
 	const requestOptions = {
 		credentials: "include",
@@ -106,6 +149,11 @@ const activationCall = async (tempCode) => {
 	return msg;
 };
 
+/**
+ * Resends activation e-mail.
+ * @param  {string} email The e-mail address.
+ * @returns {string} empty string on success, else error string.
+ */
 const resendActivationCall = async (email) => {
 	const requestOptions = {
 		credentials: "include",
@@ -130,6 +178,9 @@ const resendActivationCall = async (email) => {
 	return msg;
 };
 
+/**
+ * 	Logout.
+ */
 const logoutCall = async () => {
 	const requestOptions = {
 		credentials: "include",
@@ -151,6 +202,7 @@ const logoutCall = async () => {
 	return msg;
 };
 
+// API interface
 const Api = {
 	loginCall,
 	refreshToken,
