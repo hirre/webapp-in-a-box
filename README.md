@@ -6,7 +6,7 @@ The goal of this project is to have a "ready to go" front-end UI with many neces
 
 Features include:
 
-- ReactJS
+- [ReactJS](https://reactjs.org/)
 - [Material UI](https://material-ui.com/)
 - User registration and login
 - ReCaptcha support
