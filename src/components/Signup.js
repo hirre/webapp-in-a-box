@@ -16,7 +16,7 @@
 
 import ReCAPTCHA from "react-google-recaptcha";
 import React, { useRef, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import {
 	Button,
 	TextField,
@@ -396,6 +396,7 @@ const Signup = () => {
 							Signup
 						</Button>
 					</div>
+					<Link to="/login">&lt;&lt; Login</Link>
 				</form>
 			</Box>
 		</React.Fragment>

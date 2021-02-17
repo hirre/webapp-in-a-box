@@ -16,7 +16,7 @@
 
 import React, { useRef, useState } from "react";
 import { Button, TextField, Box, Typography } from "@material-ui/core";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import Api from "../api/Api";
 
 /**
@@ -67,6 +67,11 @@ const ResendActivation = () => {
 						<Button type="submit" variant="contained" color="primary">
 							Send
 						</Button>
+
+						<br />
+						<br />
+
+						<Link to="/login">&lt;&lt; Login</Link>
 					</form>
 				</Box>
 			</div>
