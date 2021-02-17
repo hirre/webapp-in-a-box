@@ -12,5 +12,6 @@ Features include:
 - Main menu/page
 - Cookie based authentication with JWT token support
 - Refresh token support
+- [Material UI](https://material-ui.com/)
 - Works well with [API in a Box](https://github.com/hirre/api-in-a-box)
 - and more...
