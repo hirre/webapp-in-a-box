@@ -215,7 +215,7 @@ const MainPage = () => {
 		</Menu>
 	);
 
-	if (!appCtx.IsLoggedIn) return <div>...</div>;
+	if (!appCtx.IsLoggedIn) return <div></div>;
 
 	return (
 		<div className={classes.grow}>

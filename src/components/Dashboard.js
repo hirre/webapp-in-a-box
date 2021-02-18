@@ -26,6 +26,7 @@ import Container from "@material-ui/core/Container";
 const useStyles = makeStyles({
 	root: {
 		minWidth: 275,
+		maxWidth: 275,
 	},
 	bullet: {
 		display: "inline-block",
@@ -42,8 +43,6 @@ const useStyles = makeStyles({
 
 const Dashboard = () => {
 	const classes = useStyles();
-	const bull = <span className={classes.bullet}>•</span>;
-	const [spacing, setSpacing] = React.useState(2);
 
 	return (
 		<React.Fragment>
@@ -55,18 +54,39 @@ const Dashboard = () => {
 							color="textSecondary"
 							gutterBottom
 						>
-							Word of the Day
+							Dashboard item 1
 						</Typography>
 						<Typography variant="h5" component="h2">
-							be{bull}nev{bull}o{bull}lent
+							Item 1
 						</Typography>
 						<Typography className={classes.pos} color="textSecondary">
-							adjective
+							Data
 						</Typography>
 						<Typography variant="body2" component="p">
-							well meaning and kindly.
-							<br />
-							{'"a benevolent smile"'}
+							Test test and another test.
+						</Typography>
+					</CardContent>
+					<CardActions>
+						<Button size="small">Learn More</Button>
+					</CardActions>
+				</Card>
+				<Card className={classes.root} variant="outlined">
+					<CardContent>
+						<Typography
+							className={classes.title}
+							color="textSecondary"
+							gutterBottom
+						>
+							Dashboard item 2
+						</Typography>
+						<Typography variant="h5" component="h2">
+							Item 2
+						</Typography>
+						<Typography className={classes.pos} color="textSecondary">
+							Data
+						</Typography>
+						<Typography variant="body2" component="p">
+							Test test and another test.
 						</Typography>
 					</CardContent>
 					<CardActions>
