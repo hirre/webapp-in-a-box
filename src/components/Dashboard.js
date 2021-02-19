@@ -48,7 +48,7 @@ const Dashboard = () => {
 
 	return (
 		<React.Fragment>
-			<Box display="flex" justifyContent="center">
+			<Box display="flex" justifyContent="center" flexWrap="wrap">
 				<Card className={classes.root} variant="outlined">
 					<CardContent>
 						<Typography
