@@ -283,9 +283,8 @@ const MainPage = () => {
 			</AppBar>
 			{renderMobileMenu}
 			{renderMenu}
-			<p>
-				<Dashboard />
-			</p>
+			<br />
+			<Dashboard />
 		</div>
 	);
 };
