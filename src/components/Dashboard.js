@@ -21,12 +21,13 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import Container from "@material-ui/core/Container";
+import Box from "@material-ui/core/Box";
 
 const useStyles = makeStyles({
 	root: {
 		minWidth: 275,
 		maxWidth: 275,
+		margin: 5,
 	},
 	bullet: {
 		display: "inline-block",
@@ -46,7 +47,7 @@ const Dashboard = () => {
 
 	return (
 		<React.Fragment>
-			<Container maxWidth="sm">
+			<Box display="flex" justifyContent="center">
 				<Card className={classes.root} variant="outlined">
 					<CardContent>
 						<Typography
@@ -93,7 +94,30 @@ const Dashboard = () => {
 						<Button size="small">Learn More</Button>
 					</CardActions>
 				</Card>
-			</Container>
+				<Card className={classes.root} variant="outlined">
+					<CardContent>
+						<Typography
+							className={classes.title}
+							color="textSecondary"
+							gutterBottom
+						>
+							Dashboard item 3
+						</Typography>
+						<Typography variant="h5" component="h2">
+							Item 3
+						</Typography>
+						<Typography className={classes.pos} color="textSecondary">
+							Data
+						</Typography>
+						<Typography variant="body2" component="p">
+							Test test and another test.
+						</Typography>
+					</CardContent>
+					<CardActions>
+						<Button size="small">Learn More</Button>
+					</CardActions>
+				</Card>
+			</Box>
 		</React.Fragment>
 	);
 };
