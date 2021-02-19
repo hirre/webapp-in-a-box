@@ -18,6 +18,7 @@ import { Switch, BrowserRouter, Route, Redirect } from "react-router-dom";
 import React, { createContext, useContext } from "react";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import Test from "./components/navigation/Test";
 import ActivationPage from "./components/activation/ActivationPage";
 import ResendActivation from "./components/activation/ResendActivation";
 import MainPage from "./components/navigation/MainPage";
@@ -43,10 +44,11 @@ const App = () => {
 					<Redirect to="/login" />
 				</Route>
 				<Route exact path="/login" component={Login} />
-				<Route exact path="/main" component={MainPage} />
 				<Route exact path="/signup" component={Signup} />
 				<Route exact path="/activation" component={ActivationPage} />
 				<Route exact path="/resendActivation" component={ResendActivation} />
+				<Route exact path="/main" component={MainPage} />
+				<Route exact path="/test" component={Test} />
 			</Switch>
 		</BrowserRouter>
 	);

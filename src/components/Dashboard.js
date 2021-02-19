@@ -15,6 +15,7 @@
 */
 
 import React from "react";
+import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -58,17 +59,19 @@ const Dashboard = () => {
 							Dashboard item 1
 						</Typography>
 						<Typography variant="h5" component="h2">
-							Item 1
+							An item
 						</Typography>
 						<Typography className={classes.pos} color="textSecondary">
 							Data
 						</Typography>
 						<Typography variant="body2" component="p">
-							Test test and another test.
+							Test test, this is a test.
 						</Typography>
 					</CardContent>
 					<CardActions>
-						<Button size="small">Learn More</Button>
+						<Link to="/test?i=1">
+							<Button size="small">Enter</Button>
+						</Link>
 					</CardActions>
 				</Card>
 				<Card className={classes.root} variant="outlined">
@@ -81,17 +84,19 @@ const Dashboard = () => {
 							Dashboard item 2
 						</Typography>
 						<Typography variant="h5" component="h2">
-							Item 2
+							Another item
 						</Typography>
 						<Typography className={classes.pos} color="textSecondary">
 							Data
 						</Typography>
 						<Typography variant="body2" component="p">
-							Test test and another test.
+							Another test here.
 						</Typography>
 					</CardContent>
 					<CardActions>
-						<Button size="small">Learn More</Button>
+						<Link to="/test?i=2">
+							<Button size="small">Enter</Button>
+						</Link>
 					</CardActions>
 				</Card>
 				<Card className={classes.root} variant="outlined">
@@ -104,17 +109,19 @@ const Dashboard = () => {
 							Dashboard item 3
 						</Typography>
 						<Typography variant="h5" component="h2">
-							Item 3
+							Third item
 						</Typography>
 						<Typography className={classes.pos} color="textSecondary">
 							Data
 						</Typography>
 						<Typography variant="body2" component="p">
-							Test test and another test.
+							Third test here.
 						</Typography>
 					</CardContent>
 					<CardActions>
-						<Button size="small">Learn More</Button>
+						<Link to="/test?i=3">
+							<Button size="small">Enter</Button>
+						</Link>
 					</CardActions>
 				</Card>
 			</Box>
