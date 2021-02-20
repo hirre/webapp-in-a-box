@@ -230,7 +230,7 @@ const MainPage = () => {
 						<MenuIcon />
 					</IconButton>
 					<Typography className={classes.title} variant="h6" noWrap>
-						App in a Box
+						Web App in a Box
 					</Typography>
 					<div className={classes.search}>
 						<div className={classes.searchIcon}>
