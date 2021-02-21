@@ -29,8 +29,8 @@ import CloseIcon from "@material-ui/icons/Close";
 import { makeStyles } from "@material-ui/core/styles";
 import Collapse from "@material-ui/core/Collapse";
 import { Alert, AlertTitle } from "@material-ui/lab";
-
 import Api from "./api/Api";
+import Helpers from "./helpers/Helpers";
 
 const Signup = () => {
 	const useStyles = makeStyles((theme) => ({
@@ -81,7 +81,12 @@ const Signup = () => {
 			return;
 		}
 
-		if (!checkPasswordStrength(pwd1TextfieldRef.current.value)) {
+		if (
+			!Helpers.checkPasswordStrength(
+				pwd1TextfieldRef.current.value,
+				setPwd1HelperTextState
+			)
+		) {
 			setPwd1ErrorState(false);
 		} else {
 			// Error return
@@ -111,7 +116,7 @@ const Signup = () => {
 
 		if (
 			Boolean(email1TextfieldRef.current.value) &&
-			validateEmail(email1TextfieldRef.current.value)
+			Helpers.validateEmail(email1TextfieldRef.current.value)
 		) {
 			setEmail1ErrorState(false);
 		} else {
@@ -164,79 +169,6 @@ const Signup = () => {
 			// Error
 			setErrorSnackOpen(true);
 		}
-	};
-
-	/**
-	 * Validates e-mail field.
-	 * @param  {string} email The e-mail address.
-	 * @returns {boolean} True on succes, else false.
-	 */
-	const validateEmail = (email) => {
-		const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-		return re.test(String(email).toLowerCase());
-	};
-
-	/**
-	 * Checks if password is strong enough.
-	 * @param  {string} password The password.
-	 * @returns {boolean} True on a valid password strength, else false.
-	 */
-	const checkPasswordStrength = (password) => {
-		// If textBox is empty
-		if (password.length === 0) {
-			setPwd1HelperTextState("");
-
-			return false;
-		}
-
-		// Regular Expressions
-		var regex = [];
-		regex.push("[A-Z]"); // For Uppercase Alphabet
-		regex.push("[a-z]"); // For Lowercase Alphabet
-		regex.push("[0-9]"); // For Numeric Digits
-		regex.push("[$@$!%*#?&]"); // For Special Characters
-
-		var passed = 0;
-
-		// Validation for each Regular Expression
-		for (var i = 0; i < regex.length; i++) {
-			if (new RegExp(regex[i]).test(password)) {
-				passed++;
-			}
-		}
-
-		// Validation for Length of Password
-		if (passed > 2 && password.length > 8) {
-			passed++;
-		}
-
-		// Display of Status
-		var error = false;
-		var passwordStrength = "";
-		switch (passed) {
-			case 0:
-			default:
-				break;
-			case 1:
-				passwordStrength = "Password is Weak.";
-				error = true;
-				break;
-			case 2:
-				passwordStrength = "Password is Good.";
-				break;
-			case 3:
-				break;
-			case 4:
-				passwordStrength = "Password is Strong.";
-				break;
-			case 5:
-				passwordStrength = "Password is Very Strong.";
-				break;
-		}
-
-		setPwd1HelperTextState(passwordStrength);
-
-		return error;
 	};
 
 	/**

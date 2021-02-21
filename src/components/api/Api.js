@@ -202,6 +202,34 @@ const logoutCall = async () => {
 	return msg;
 };
 
+/**
+ * Reset password.
+ */
+const resetPasswordCall = async (tmpCode, pwd) => {
+	const requestOptions = {
+		credentials: "include",
+		method: "POST",
+		headers: { "Content-Type": "application/json" },
+		body: JSON.stringify({
+			temporarycode: tmpCode,
+			newpassword: pwd,
+		}),
+	};
+
+	let msg = "Reset password failed!";
+
+	await fetch(ApiEndPoint + "/api/Register/ResetPassword", requestOptions)
+		.then(handleErrors)
+		.then(async (response) => {
+			msg = "";
+		})
+		.catch((error) => {
+			msg = error.message;
+		});
+
+	return msg;
+};
+
 // API interface
 const Api = {
 	loginCall,
@@ -210,6 +238,7 @@ const Api = {
 	logoutCall,
 	activationCall,
 	resendActivationCall,
+	resetPasswordCall,
 };
 
 export default Api;

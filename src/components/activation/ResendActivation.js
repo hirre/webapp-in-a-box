@@ -34,7 +34,7 @@ const ResendActivation = () => {
 
 		await Api.resendActivationCall(emailTextfieldRef.current.value);
 
-		setTimeout(() => history.push(""), 2000);
+		setTimeout(() => history.push("/"), 2000);
 	};
 
 	return (
