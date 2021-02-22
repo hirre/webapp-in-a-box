@@ -27,6 +27,7 @@ import {
 import CloseIcon from "@material-ui/icons/Close";
 import Api from "./api/Api";
 import { useAppContext } from "../App";
+import Cookies from "universal-cookie";
 
 const Login = () => {
 	const unameTextfieldRef = useRef();
@@ -34,6 +35,7 @@ const Login = () => {
 	const [snackOpen, setErrorSnackOpen] = useState(false);
 	const appCtx = useAppContext();
 	const history = useHistory();
+	const cookies = new Cookies();
 
 	useEffect(() => {
 		const checkLogin = async () => {
@@ -65,6 +67,7 @@ const Login = () => {
 		} else {
 			setErrorSnackOpen(false);
 			appCtx.IsLoggedIn = true;
+			cookies.set("Username", unameTextfieldRef.current.value, { path: "/" });
 
 			// Route to main view
 			history.push("/main");

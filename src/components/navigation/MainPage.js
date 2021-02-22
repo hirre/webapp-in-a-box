@@ -35,6 +35,7 @@ import MoreIcon from "@material-ui/icons/MoreVert";
 import { useAppContext } from "../../App";
 import Api from "./../api/Api";
 import Dashboard from "../Dashboard";
+import Cookies from "universal-cookie";
 
 const useStyles = makeStyles((theme) => ({
 	grow: {
@@ -104,6 +105,7 @@ const MainPage = () => {
 	const appCtx = useAppContext();
 	const [isLoggedIn, setIsLoggedIn] = useState(appCtx.isLoggedIn);
 	const history = useHistory();
+	const cookies = new Cookies();
 
 	useEffect(() => {
 		const checkLogin = async () => {
@@ -164,8 +166,7 @@ const MainPage = () => {
 			open={isMenuOpen}
 			onClose={handleMenuClose}
 		>
-			<MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-			<MenuItem onClick={handleMenuClose}>My account</MenuItem>
+			<MenuItem onClick={handleMenuClose}>{cookies.get("Username")}</MenuItem>
 			<MenuItem onClick={handleLogout}>Logout</MenuItem>
 		</Menu>
 	);
@@ -197,7 +198,7 @@ const MainPage = () => {
 				</IconButton>
 				<p>Notifications</p>
 			</MenuItem>
-			<MenuItem onClick={handleProfileMenuOpen}>
+			<MenuItem>
 				<IconButton
 					aria-label="account of current user"
 					aria-controls="primary-search-account-menu"
@@ -206,7 +207,7 @@ const MainPage = () => {
 				>
 					<AccountCircle />
 				</IconButton>
-				<p>Profile</p>
+				<p>{cookies.get("Username")}</p>
 			</MenuItem>
 			<MenuItem onClick={handleLogout}>
 				<LockIcon />
